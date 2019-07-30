@@ -1,0 +1,24 @@
+1. Given a flow network N in which all of the edges have capacity equal to one,
+and given also an integer k, the problem is to delete k of the edges from N so
+as to reduce the maximum flow in N by as much as possible.
+Give an efficient algorithm to solve this problem. (6 marks)
+
+Solution: 
+	By deleting k edges of the flow network N
+
+	1. Need to reduced the capacity of any cut by k as a result of the min-cut is to be redueced by at most of k, so the max-flow is to be redueced
+
+	2. to Reduce the max-flow from N by k, need to consider minimun cut X for removing k edges exiting out of it. SO the capacity of minimum cut X is f - k. f is considered as a value of the max-flow 
+
+	
+
+// Create by yid164
+// algorithm for Q1
+// N(V, E) is the network flow
+
+flow_network(N, k):
+
+	if N 
+
+
+

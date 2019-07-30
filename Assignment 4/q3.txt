@@ -1,0 +1,62 @@
+Build a flow network 
+
+node vi for each patient i
+node wj for each hospital j
+edge(vi, wj) of capacity 1 if patient i is within a half hour drive of hospital j
+
+connect a super-source s to each of the patient nodes by an edge of capcity 1
+
+we connect each of the hospital nodes to a super-sink t by an edge of capacity [n/k]
+
+claim that there is feasible way to send all patients to hospitals iff there is an s-t folow of value n.
+
+If there is a feasible way to send patients
+	send one unit of flow from s to t along each of the paths s, vi, wj, t
+		i -> j
+
+	This does not violate the capacity conditions, in particular on the edge (wj, t) due to the load constraints
+
+Conversely, if there is a flow of value n 
+	then there is one with integer values
+
+We send patient i to hospital j if the edge(vi, wj) varries one unit of flow, and we observe that the capacity condition ensueres that no hospital is overloaded 
+
+Running time max-flow problem on a graph with O(n + k) node and O(nk) edges
+
+
+
+// created by yid164
+// The algorithm of A3Q3
+
+// making nodes p for paitent and h for hospital
+node pi for each patient i
+
+node hj for each hospital j
+
+// if thier distance is less than 0.5 h dirve, then pair them
+
+if pi is within 0.5 hour dirve of hj
+	edge(pi, hj) has 1 capacity 
+
+// super source s
+source s is between all the patient-nodes by an edge with flow capacity of 1 
+
+// super sink t, so we can have s-t flow of value n
+sink t is made by linking all the hospital-nodes by and edge with capacity [n/k]
+
+// We can send p to h with 1 flow-unit if edge(pi, hi) permits at least 1 flow-unit
+if it is a feasible way: 
+	send 1 flow unit from s to t along the path (s, pi, hi, t) 
+endif
+
+// if there is a flow of n
+if there is a source s to sink t flow of n:
+ 	send i to j if edge(pi, hj) carries 1 unit flow and check hospitals are not overloaded
+ endif
+
+
+
+
+
+connect each of 
+	

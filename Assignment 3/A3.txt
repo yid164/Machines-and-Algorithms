@@ -1,0 +1,339 @@
+
+
+// Create by yid164
+// Slack function for Q1
+// This function is for counting how many spaces left
+
+function Slack(char_start, char_end):
+	
+	// if char_end - char_start is larger than max length, it return max
+	if (char_end - char_start) > L:
+		then return max
+		
+	spaceLeft = L - (char_end - char_start)
+	
+	return spaceLeft
+	
+end function. 
+
+
+// Create by yid164
+// FindMin function for Q1
+// This is a helper function for finding the smallest Slack
+
+function FindMin(list)
+	return l which is the smallest element
+
+
+// Create by yid164
+// The Opt function to retrieve all the words
+// This function will return the sum of the squares of the slack of all lines
+
+Function Opt[n]
+
+	// if n is from start, then it is empty
+	If n = 0:
+		return 0
+	Else
+		// this for-loop is getting all the element from words
+		For i = 1; i <= n; i++
+			// this for-loop is for comparing every words and getting the minium 
+			// of Slack square + last Opt
+			// This is the dynamic programming part 	
+			For every j >= 0 and j <= i
+				Opt[i] = min ((Slack(j, i))^2 + Opt[j-1])
+			End for
+		End for 
+	End if
+	Return Opt[n]
+End Function
+
+// Create by yid164
+// The Algorithm 
+
+// paragraph that given
+vector<vector<char>> paragraph
+
+// the maximum of length for each line
+Length L
+ 
+// line storing the character of the words
+vector<char> lines
+
+// Initially the length is 0	
+length = 0;
+
+// this for loop is using to add each word to the line
+for i = 1, i <= n, i++
+	
+	lines.add(Wi)
+	
+	if i < n 
+		
+		length = length + Ci + 1
+	else
+		
+		length = length + Ci
+	end if
+end for
+
+// this is for pushing the line to the paragraph
+while length <= L 
+	
+		paragraph.add(lines)
+	
+// return the number of the line
+return lineNum = paragraph.size()
+	
+
+
+// Create by yid164
+// The Algorithm Design for Q2 
+// The Optimal function for Q2
+
+// The Supply list that company have
+S[0...n]
+
+// The best choice to return
+BestChoice[]
+
+// Opt function
+Opt(n):
+
+	// if there is nothing in the supply weeks
+	if n == 0:
+		Opt(n) = 0
+		BestChoice[].add(Opt(n))
+			
+	// if the supply chain has 4 or less weeks then we have to decide which company is better
+	// we do that because when the weeks are less than 4, choosing company B might not behave 
+	// the best solution 
+	Elif n <= 4:
+		for i = n, i>=0; i--:
+			Opt(n) = min ((S[n] * r + Opt(n-1)), 4c)
+			BestChoice[].add(Opt(n))
+		endFor
+		
+	// if n is larger than 4, then do the DP
+	// Iterate all element that larger than 4, and 
+	// Add the best choice of Opt(i)
+	Elif n > 4:
+		for i = n, i >= 0; i++:
+			Opt(n) = min((S[n] * r + Opt(n-1)), 4c+Opt(n-1))
+			BestChoice[].add(Opt(n))
+		endFor
+	EndIf
+	
+	// return the best choice
+	return BestChoice[]
+	
+
+// Create by yid164
+// The Algorithm variables of Q3
+
+// Q is the size
+Q = 0;
+
+// M is the matrix that question given
+M = the matrix that question given
+
+// the row of M
+n = the rows of M
+
+// the column of M
+m = the col of M
+
+// the submatrix 
+N = the submatrix of M
+
+// left pointer in current point
+LP = the current point - 1
+
+// upper pointer in current point
+UP = the current point - 1 
+
+// Create by yid164
+// This algorithm is for determine the column variables in fixed row
+i = n
+
+while i >= 1:
+
+	// from the 1st to the final row, if the M[i][j] is noisy
+	// then the N in the same position and it's upper position will be noisy
+	if M[i][0] == 0: 
+		N[i][0] = 0
+		N[i][UP] = 0
+		
+	// If the M[i][j] is quite, then set up the N's same position and its upper point
+	// be quite
+	else:
+		N[i][0] = 1
+		N[i][UP] = 1
+	endif
+	
+	i--
+end while
+
+
+// Create by yid164
+// This algorithm is for determine the row variables in fixed column 
+j = m
+
+while j >= 1:
+
+	// from the 1st to the final column, fi the M[i[[j] is noisy 
+	// the the N in the same position and it's left position will be noisy
+	if M[0][j] == 0:
+		N[0][j] = 0
+		N[j][LP] = 0
+	
+	// Else, set up the N's same position and its left point be quite
+	else:
+		N[0][j] = 1
+		N[j][LP] = 1
+	endif
+	
+	j--
+end while
+
+
+// Create by yid164
+// This algorithm is for comparing the variables
+s = n
+k = m
+
+while s >= 2:
+	while k >= 2:
+		
+		// If the M[s][k] = noisy, then do the DP then 
+		// N in same position and upper row and left col = the minimal one
+		// so we can fit 1 <= s <=n and 1<= k <= m
+		if M[s][k] = 1
+			N[s][k] = min ( N[s-1][k-1], N[s-1][UP], N[k-1][LP] ) + 1
+			N[i][UP] = N[s-1][UP] + 1
+			N[j][LP] = N[j-1][LP] + 1
+		else:
+			N[s][k] = 0
+			N[s][up] = 0
+			N[s][left] = 0
+		endif
+		
+		// let Q equal to N and return Q
+		if( Q < N[s][k] )
+			Q = N[s][k]
+		endif
+		k --
+	end while
+	s --
+end while
+
+// the Q is the final answer of the submatrix
+return Q
+
+
+// Create By yid164
+// Matrix M[i][j] shows the right bottom item of the M
+// Q is the submatrix size
+// if one of i, j is 0, or both are 0
+// which means it does have only 1 row or 1 column 
+// or it does have only 1 element
+
+// Q is the submatrix size
+Q = 0
+
+//if M only has 1 row, if there an element is quite, then Q = 1
+if i == 0 && j > 0:
+	while k <= j:
+		if M[i][k] == 1:
+			Q = 1
+			return
+		else:
+			Q = 0
+		end if
+		k++
+	end while
+
+//if M only has 1 col, if there an element is quite, then Q = 1
+else if j == 0 && i > 0:
+	while k <= i
+		if M[k][j] == 1:
+			Q = 1
+			return
+		else:
+			Q = 0
+		endif
+		k ++
+	end while
+
+//if M only has 1 element, if that element is quite, then Q = 1
+else if i == 0 && j == 0:
+	if M[i][j] == 1:
+		Q = 1
+	else:
+		Q = 0
+	end if
+endif
+
+
+// create by yid164
+// Algorithm for DP 
+
+// M[i][j] is the right bottom corner element
+// N[i][j] is an assumed matrix that store the submatrix of M
+
+// the maximum size of balanced quite matrix
+Q = 0
+
+// pointer of row
+a = 1
+
+// pointer of col
+b = 1
+
+// do the recursive DP for adding the quite element from M to N
+// n is the matrix M's max row number
+// m is the matrix M's max col number
+while a <= n 
+	while b <= m
+	
+		// if the M[a][b] is quite, then add the min (left, up, and tranversal item) + 1
+		// if all the items is quite, then the N[a][b] becomes to 2
+		// if one of the items is noisy, then the N[a][b] reminds to 1
+		if M[a][b] == 1:
+			N[a][b] = min (M[a-1][b], M[a][b-1], M[a-1][b-1]) + 1
+		
+		// if the M[a][b] is noisy, then N[a][b] is noisy (0)
+		else:
+			N[a][b] = 0;
+		endif
+		
+		// add N[a][b] to Q
+		if( Q < N[a][b] )
+			Q = N[a][b]
+		endif
+		b ++
+	end while
+	a ++
+end while 
+return Q
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+			
+					
+

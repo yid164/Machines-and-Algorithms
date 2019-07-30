@@ -1,0 +1,49 @@
+
+// create by yid164
+// algorithm for A4Q2
+// this algorithm is for check the set of walls, swhiches, and fixture are ergnomic
+// three variables fixtures, swhiches, and walls
+ergonomic(fixtures, switches, walls)
+	// bipartite graph G = (V,E)
+	BP_graph = {}
+
+	for f in fixtures:
+		for s in switches:
+
+			// pair f and s, and check if the wall, if f, s do not cross the wall, then add it to BP_graph
+			p =  Pair(f, s):
+				for w in walls:
+					if p corsses w:
+						go next pair
+					else:
+						add p to BP_graph
+					endif
+				endfor
+		endfor
+	endfor
+
+	for BP in BP_graph:	
+		// use temparay arrays to determine if they are perfectly matching
+		temp_switch_array = []
+		temp_fixture_array = []
+
+		// check switches
+		for s in switches:
+
+			if s in temp_swtich_array:
+				return false
+
+			else
+				add s to temparary array
+			end if
+		end for
+
+		// check fxitures
+		for f in fixtures:
+			if f is in temp_fixtrue_array:
+				return false
+			else:
+				add fixture to a tempary fixture array
+			end if
+		end for
+	return true
